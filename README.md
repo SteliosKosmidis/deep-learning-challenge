@@ -123,3 +123,56 @@ How many neurons, layers, and activation functions did you select for your neura
 Were you able to achieve the target model performance?
 What steps did you take in your attempts to increase model performance?
 Summary: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and then explain your recommendation.
+
+OVERVIEW
+The nonprofit foundation Alphabet Soup wants a tool that can help it select the applicants for funding with the best chance of success in their ventures. Alphabet Soup’s business team, has a CSV containing more than 34,000 organizations that have received funding from Alphabet Soup over the years. 
+
+Within this dataset are a number of columns that capture metadata about each organization, such as:
+
+EIN and NAME—Identification columns
+APPLICATION_TYPE—Alphabet Soup application type
+AFFILIATION—Affiliated sector of industry
+CLASSIFICATION—Government organization classification
+USE_CASE—Use case for funding
+ORGANIZATION—Organization type
+STATUS—Active status
+INCOME_AMT—Income classification
+SPECIAL_CONSIDERATIONS—Special considerations for application
+ASK_AMT—Funding amount requested
+IS_SUCCESSFUL—Was the money used effectively
+
+The target variable for the model is IS_SUCCESSFUL.
+
+Feature variable(s) for the model: The feature variables for the model include APPLICATION_TYPE, AFFILIATION, CLASSIFICATION, USE_CASE, ORGANIZATION, STATUS, INCOME_AMT, SPECIAL_CONSIDERATIONS, and ASK_AMT.
+
+Variable(s) removed from the input data: The EIN and NAME columns were removed from the input data as they are identification columns and not useful as features or targets.
+Compiling, Training, and Evaluating the Model.
+Neurons, layers, and activation functions selected for the neural network model and rationale: The model consists of three hidden layers with 120, 85, and 1 neurons, respectively, and ReLU activation functions. 
+First layer - Activation function -> 'LeakyReLU'
+Second layer - Activation function -> 'ReLU'
+Output layer - Activation function -> 'tanh'
+Compiled the model using loss as "binary_crossentropy", since this is a binary classification, optimizer used as "adam" and accuracy metrics are captured.
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 120)               6360      
+                                                                 
+ dense_1 (Dense)             (None, 85)                10285     
+                                                                 
+ dense_2 (Dense)             (None, 1)                 86        
+                                                                 
+=================================================================
+
+Training
+The model was trained using X_train_scaled,y_train and epochs of 100.
+Evaluation:
+268/268 - 0s - loss: 0.5644 - accuracy: 0.7192 - 425ms/epoch - 2ms/step
+Loss: 0.5643521547317505, Accuracy: 0.7191836833953857
+The model had an accuracy of ~72% very close to the best optimized model.
+
+The loss and accuracy of the model may be improved by changing the number of neurons, changing the number of hidden layers, changing the activation functions
+and the number of cutoff values while preprocessing the data. However, this might not lead to increased accuracy.
+
+Recommedation:
+Since our model has a higher number of input parameters, a random forest classifier could results in better accuracy.
